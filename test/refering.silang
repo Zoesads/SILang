@@ -1,0 +1,8 @@
+proc main
+	"Hello World from SILang!" simple_string ref
+	simple_string println
+end
+
+#======< EXPECTED OUTPUT >======
+#|Hello World from SILang!
+#===============================

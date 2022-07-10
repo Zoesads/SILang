@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap')
+$font: ("Source Sans Pro", sans-serif)
+$font2: ("JetBrains Mono", monospace)
+body
+  background-color: #fafafa
+.main-content
+  margin-top: 10%
+  width: auto
+  text-align: center
+  padding: 30px 40px
+  max-width: 800px
+  margin-left: auto
+  margin-right: auto
+  line-height: 1.85em
+  font-family: $font
+  background-color: #fff
+  border: 3px solid #ededed
+  border-radius: 20px
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15), 0 20px 0 -5px #fff, 0 20px 1px -3px rgba(0, 0, 0, 0.15), 0 40px 0 -10px #fff, 0 40px 1px -8px rgba(0, 0, 0, 0.15)
+  & .ref:hover
+    transition: color 0.2s ease-out
+    text-shadow: 0 0 3px #0005
+    color: #0bf
+  & .ref
+    font-weight: bold
+    text-decoration: none
+    color: #000
+  & .header
+    font-family: $font2
+    font-weight: bolder
+    font-size: 4rem
+  & .desc
+    line-height: 1.2em
+    font-weight: normal
+    font-size: 1.25rem
+  & .btn
+    font-weight: 500
+    font-size: 1.3rem
+    margin-top: 1.5em
+    margin-left: 1.5em
+    margin-right: 1.5em
+    background-color: #fff
+    border: none
+  & .btn:hover
+    transition: color 0.2s ease-out
+    text-shadow: 0 0 3px #0005
+    color: #0bf

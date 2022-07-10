@@ -1,0 +1,11 @@
+proc main
+	1 1 add 2 eq if
+		"1 + 1 == 2" println
+	else
+		"1 + 1 != 2" println
+	end
+end
+
+#======< EXPECTED OUTPUT >======
+#|1 + 1 == 2
+#===============================

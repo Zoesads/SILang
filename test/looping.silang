@@ -1,0 +1,41 @@
+proc driver2
+	1 sub println
+	dup 1 gt if
+		pop driver2 jmp
+	end
+end
+proc driver
+	1 add println
+	dup 10 lt if
+		pop driver jmp
+	end
+end
+proc main
+	0
+	driver jmp
+
+	10
+	driver2 jmp
+end
+
+#======< EXPECTED OUTPUT >======
+#|1
+#|2
+#|3
+#|4
+#|5
+#|6
+#|7
+#|8
+#|9
+#|10
+#|9
+#|8
+#|7
+#|6
+#|5
+#|4
+#|3
+#|2
+#|1
+#===============================

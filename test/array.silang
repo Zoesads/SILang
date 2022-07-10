@@ -1,0 +1,20 @@
+proc printing
+	1 sub
+	arrat
+	println
+	pop
+	dup 0 gt if
+		pop printing jmp
+	end
+end
+proc main
+	"This print first" true 123 3 mkarr
+	3
+	printing jmp
+end
+
+#======< EXPECTED OUTPUT >======
+#|This print first
+#|true
+#|123
+#===============================

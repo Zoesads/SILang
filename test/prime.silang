@@ -1,0 +1,43 @@
+proc prime_check
+	dup i swap mod 0 neq if
+		pop dup dup mul i lteq if
+			pop 1 add prime_check jmp
+		else
+			pop
+			found 1 add found ref
+		end
+	end
+end
+proc driver
+	i 1 add i ref
+	2 prime_check jmp
+	i lim lt if
+		pop driver jmp
+	end
+end
+proc main
+	10 lim ref
+	2 i ref
+	1 found ref
+	driver jmp
+	found println
+
+	2 i ref
+	1 found ref
+	100 lim ref
+	driver jmp
+	found println
+
+	2 i ref
+	1 found ref
+	500 lim ref
+	driver jmp
+	found println
+
+end
+
+#======< EXPECTED OUTPUT >======
+#|4
+#|25
+#|95
+#===============================
