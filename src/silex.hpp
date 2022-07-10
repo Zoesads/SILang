@@ -22,7 +22,7 @@ static const std::set<std::string> SIK_TK = {
     "swap", "rotate", "strconcat", "strat",
     "mkarr", "arrat", "arrconcat", "arrpush",
     "arrpop", "mod", "ref", "if",
-    "else", "println", "sqrt", "or"
+    "else", "println", "or"
 };
 
 enum SIT_TK {
