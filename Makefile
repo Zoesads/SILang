@@ -7,4 +7,6 @@ HEADER=-Isrc
 CFLAGS=$(WARN) $(OPTIMIZATION) $(SECURITY) $(HEADER)
 CXX = clang++ $(CFLAGS)
 compile:
-	$(CXX) $(SRC)/silang.cpp -o $(BUILD)/silang
+	$(CXX) -c $(SRC)/silang.cpp -o $(BUILD)/silang.o
+	$(CXX) -o $(BUILD)/silang.exe $(BUILD)/silang.o
+	$(CXX) -o $(BUILD)/silang $(BUILD)/silang.o

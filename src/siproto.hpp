@@ -58,16 +58,12 @@ namespace SIAbsTree {
             Node *LHS = nullptr;
             Node *RHS = nullptr;
             inline void Del_LHS() {
-                if (this->LHS != nullptr) {
+                if (this->LHS)
                     delete(this->LHS);
-                    this->LHS = nullptr;
-                }
             };
             inline void Del_RHS() {
-                if (this->RHS != nullptr) {
+                if (this->RHS)
                     delete(this->RHS);
-                    this->RHS = nullptr;
-                }
             };
             inline std::string get_name() {
                 return this->name; 
@@ -143,12 +139,8 @@ namespace SIAbsTree {
                         return;
                     if (head == to_del)
                     {
-                        if (len < len2)
-                        {
-                            head->Del_LHS();
-                            return;
-                        }
-                        head->Del_RHS();
+                        delete(head);
+                        return;
                     }
                     len2 = head->get_name().length();
                     if (len < len2)

@@ -48,6 +48,7 @@ class SILex_Reader {
         _SI_ULL line_number;
         SILex_Reader(const std::string &str);
         void SILex_Read();
+        inline void change_story(const std::string &new_story);
         inline _SI_ULL current_read_loc();
         inline void new_region(_SI_ULL start, _SI_ULL end);
         inline void flush();
@@ -59,6 +60,16 @@ class SILex_Reader {
 inline int SILex_Reader::getToken() {return this->type == -1? tk_eof : this->type;}
 inline std::string SILex_Reader::getStrVal() {return this->val_str;}
 inline double SILex_Reader::getNumVal() {return this->val_num;}
+
+inline void SILex_Reader::change_story(const std::string &new_story) {
+    this->str = new_story;
+    this->str_len = new_story.length();
+    this->p = 0;
+    this->val_num = 0;
+    this->val_str = "";
+    this->line_number = 1;
+}
+
 inline void SILex_Reader::flush() {
     this->val_num = 0;
     this->val_str = "";
@@ -66,14 +77,8 @@ inline void SILex_Reader::flush() {
     this->line_number = 0;
 }
 
-
 SILex_Reader::SILex_Reader(const std::string &str) {
-    this->str = str;
-    this->str_len = 0;
-    this->p = 0;
-    this->val_num = 0;
-    this->val_str = "";
-    this->line_number = 1;
+    this->change_story(str);
 }
 inline void SILex_Reader::new_region(_SI_ULL start, _SI_ULL end) {
     if (end > this->str.length() || end < start) {

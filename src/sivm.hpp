@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <memory>
 #include <vector>
 #include <stack>
 #include <set>
@@ -19,10 +20,10 @@ class SIVM {
         std::string si_buf;
         bool _feeded_ = false;
         bool _proto_init_ = false;
-        SILex_Reader *reader = nullptr;
 
-        SIAbsTree::Tree *Heapy = nullptr;
-        std::stack<SIStack::Val*> *Stacky = nullptr;
+        std::unique_ptr<SILex_Reader> reader = std::make_unique<SILex_Reader>("");
+        std::unique_ptr<SIAbsTree::Tree> Heapy = std::make_unique<SIAbsTree::Tree>();
+        std::unique_ptr<std::stack<SIStack::Val*>> Stacky = std::make_unique<std::stack<SIStack::Val*>>();
         _SI_ULL line_offset = 0;
 
         inline int nextToken()
@@ -828,41 +829,14 @@ class SIVM {
         inline void feed(const std::string &si_input)
         {
             try {
-                if (this->_feeded_) {
-                    delete(this->Heapy);
-                    delete(this->Stacky);
-                    this->Heapy = new SIAbsTree::Tree();
-                    this->Stacky = new std::stack<SIStack::Val*>;
-                }
-                if (!this->_feeded_) {
-                    this->reader = new SILex_Reader(si_input);
-                    this->Heapy = new SIAbsTree::Tree();
-                    this->Stacky = new std::stack<SIStack::Val*>;
-                }
+                this->reader->change_story(si_input);
                 this->line_offset = 1;
                 this->si_buf = si_input;
                 this->reader->new_region(0, si_input.length());
                 this->_feeded_ = true;
             } catch (std::bad_alloc const &){
                 this->ErrorLog("Not enough memory to initialize VM.");
-                if (this->Heapy) {
-                    delete(this->Heapy);
-                    this->Heapy = nullptr;
-                }
-                if (this->Stacky) {
-                    delete(this->Stacky);
-                    this->Stacky = nullptr;
-                }
-                if (this->reader) {
-                    delete(this->reader);
-                    this->reader = nullptr;
-                }
             }
-        };
-        ~SIVM()
-        {
-            if (this->reader)
-                delete(this->reader);
         };
         bool exec()
         {
@@ -882,8 +856,6 @@ class SIVM {
                 }
                 else
                     this->SIVM_Exec((SIProto::Proc*)main_proc->get_val());
-                delete (this->Heapy);
-                delete (this->Stacky);
                 this->si_buf = "";
                 return 0;
             }
